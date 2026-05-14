@@ -61,3 +61,63 @@ O ensemble superou os especialistas individuais:
 - **F1 ensemble**: 0.85 (+2%)
 - **Precision**: 0.91 (melhor na redução de falsos positivos)
 
+# Explicabilidade com SHAP
+
+## O que é SHAP?
+
+SHAP (SHapley Additive exPlanations) é um método baseado em Shapley values (teoria dos jogos) que explica a contribuição de cada feature para uma predição.
+O TreeExplainer foi otimizado para modelos de árvore (50-100x mais rápido que LIME)
+
+## Explicabilidade
+
+**Módulo:** `src/explain.py` (406 linhas)
+
+### Funcionalidades Implementadas
+
+**Para Random Forest e XGBoost:**
+- `TreeExplainer`: explica decisões dos modelos
+- `Summary Plot` (bar): importância média de features
+- `Beeswarm Plot` (scatter): dispersão de impacto SHAP
+- `Impact Plots`: top 10 features por transação
+
+**Para Autoencoder:**
+- Análise de erro de reconstrução (MSE) por feature
+- Identifica features com comportamento anômalo
+- Top 10 features com maior dificuldade de aprendizado
+
+### Otimizações
+
+- **Amostragem**: 1000 amostras (1.75% do dataset) mantendo representatividade
+- **Performance**: reduz tempo de ~20 min → ~1.5 min
+
+### Saídas Geradas
+
+```
+outputs/explanations/
+├── shap_summary_random_forest.png
+├── shap_beeswarm_random_forest.png
+├── shap_impact_rf_idx*.png (3 transações com maior fraude)
+├── autoencoder_reconstruction_errors.png
+└── autoencoder_reconstruction_errors.csv
+```
+
+### Como Usar
+
+```bash
+# Gerar explicações (1.5 min com amostragem)
+python -m src.explain
+
+# Ou via script
+python run_explanations.py
+```
+
+**Como módulo:**
+```python
+from src.explain import generate_all_explanations
+from src.ensemble import load_and_preprocess
+
+_, X_test, _, _ = load_and_preprocess("data/creditcard.csv")
+generate_all_explanations(X_test, "models", "outputs/explanations")
+```
+
+

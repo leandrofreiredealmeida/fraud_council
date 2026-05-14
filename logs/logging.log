@@ -1,0 +1,166 @@
+[2026-05-14 09:42:35,185: INFO: explain: Carregando dados...]
+[2026-05-14 09:42:36,047: INFO: explain: ============================================================]
+[2026-05-14 09:42:36,047: INFO: explain: GERANDO EXPLICABILIDADE COM SHAP]
+[2026-05-14 09:42:36,047: INFO: explain: ============================================================]
+[2026-05-14 09:42:36,047: INFO: explain: 
+📊 Random Forest...]
+[2026-05-14 09:42:36,047: INFO: explain: Gerando SHAP values para random_forest...]
+[2026-05-14 09:53:44,608: INFO: explain: Carregando dados...]
+[2026-05-14 09:53:45,476: INFO: explain: ============================================================]
+[2026-05-14 09:53:45,476: INFO: explain: GERANDO EXPLICABILIDADE COM SHAP]
+[2026-05-14 09:53:45,476: INFO: explain: ============================================================]
+[2026-05-14 09:53:45,477: INFO: explain: Usando 1000 amostras para SHAP (de 56962 total)]
+[2026-05-14 09:53:45,478: INFO: explain: 
+📊 Random Forest...]
+[2026-05-14 09:53:45,478: INFO: explain: Gerando SHAP values para random_forest...]
+[2026-05-14 09:55:11,691: INFO: explain: SHAP values gerados: shape=(1000, 30, 2)]
+[2026-05-14 09:55:11,691: INFO: explain: Criando summary plot para random_forest...]
+[2026-05-14 09:55:12,432: INFO: explain: Summary plot salvo: /home/leandro/programacao/fraud_council/outputs/explanations/shap_summary_random_forest.png]
+[2026-05-14 09:55:12,432: INFO: explain: Criando beeswarm plot para random_forest...]
+[2026-05-14 09:55:12,797: INFO: explain: Beeswarm plot salvo: /home/leandro/programacao/fraud_council/outputs/explanations/shap_beeswarm_random_forest.png]
+[2026-05-14 09:55:12,857: INFO: explain: Criando waterfall plot para rf (transação 486)...]
+[2026-05-14 09:55:47,207: INFO: explain: Carregando dados...]
+[2026-05-14 09:55:48,091: INFO: explain: ============================================================]
+[2026-05-14 09:55:48,091: INFO: explain: GERANDO EXPLICABILIDADE COM SHAP]
+[2026-05-14 09:55:48,091: INFO: explain: ============================================================]
+[2026-05-14 09:55:48,092: INFO: explain: Usando 1000 amostras para SHAP (de 56962 total)]
+[2026-05-14 09:55:48,092: INFO: explain: 
+📊 Random Forest...]
+[2026-05-14 09:55:48,092: INFO: explain: Gerando SHAP values para random_forest...]
+[2026-05-14 09:57:14,227: INFO: explain: SHAP values gerados: shape=(1000, 30, 2)]
+[2026-05-14 09:57:14,227: INFO: explain: Criando summary plot para random_forest...]
+[2026-05-14 09:57:14,636: INFO: explain: Summary plot salvo: /home/leandro/programacao/fraud_council/outputs/explanations/shap_summary_random_forest.png]
+[2026-05-14 09:57:14,636: INFO: explain: Criando beeswarm plot para random_forest...]
+[2026-05-14 09:57:15,011: INFO: explain: Beeswarm plot salvo: /home/leandro/programacao/fraud_council/outputs/explanations/shap_beeswarm_random_forest.png]
+[2026-05-14 09:57:15,079: INFO: explain: Criando waterfall plot para rf (transação 486)...]
+[2026-05-14 09:58:08,801: INFO: explain: Carregando dados...]
+[2026-05-14 09:58:09,651: INFO: explain: ============================================================]
+[2026-05-14 09:58:09,651: INFO: explain: GERANDO EXPLICABILIDADE COM SHAP]
+[2026-05-14 09:58:09,651: INFO: explain: ============================================================]
+[2026-05-14 09:58:09,652: INFO: explain: Usando 1000 amostras para SHAP (de 56962 total)]
+[2026-05-14 09:58:09,653: INFO: explain: 
+📊 Random Forest...]
+[2026-05-14 09:58:09,653: INFO: explain: Gerando SHAP values para random_forest...]
+[2026-05-14 09:59:35,207: INFO: explain: SHAP values gerados: shape=(1000, 30, 2)]
+[2026-05-14 09:59:35,207: INFO: explain: Criando summary plot para random_forest...]
+[2026-05-14 09:59:35,601: INFO: explain: Summary plot salvo: /home/leandro/programacao/fraud_council/outputs/explanations/shap_summary_random_forest.png]
+[2026-05-14 09:59:35,602: INFO: explain: Criando beeswarm plot para random_forest...]
+[2026-05-14 09:59:35,917: INFO: explain: Beeswarm plot salvo: /home/leandro/programacao/fraud_council/outputs/explanations/shap_beeswarm_random_forest.png]
+[2026-05-14 09:59:35,984: INFO: explain: Criando waterfall plot para rf (transação 486)...]
+[2026-05-14 09:59:35,984: WARNING: explain: SHAP values shape inesperado: (30, 2), tentando extrair coluna]
+[2026-05-14 10:02:24,280: INFO: explain: Carregando dados...]
+[2026-05-14 10:02:25,069: INFO: explain: ============================================================]
+[2026-05-14 10:02:25,069: INFO: explain: GERANDO EXPLICABILIDADE COM SHAP]
+[2026-05-14 10:02:25,069: INFO: explain: ============================================================]
+[2026-05-14 10:02:25,070: INFO: explain: Usando 1000 amostras para SHAP (de 56962 total)]
+[2026-05-14 10:02:25,070: INFO: explain: 
+📊 Random Forest...]
+[2026-05-14 10:02:25,070: INFO: explain: Gerando SHAP values para random_forest...]
+[2026-05-14 10:03:50,076: INFO: explain: SHAP values gerados: shape=(1000, 30, 2)]
+[2026-05-14 10:03:50,076: INFO: explain: Criando summary plot para random_forest...]
+[2026-05-14 10:03:50,489: INFO: explain: Summary plot salvo: /home/leandro/programacao/fraud_council/outputs/explanations/shap_summary_random_forest.png]
+[2026-05-14 10:03:50,490: INFO: explain: Criando beeswarm plot para random_forest...]
+[2026-05-14 10:03:50,799: INFO: explain: Beeswarm plot salvo: /home/leandro/programacao/fraud_council/outputs/explanations/shap_beeswarm_random_forest.png]
+[2026-05-14 10:03:50,855: INFO: explain: Criando gráfico de impacto para rf (transação 486)...]
+[2026-05-14 10:09:59,894: INFO: explain: Carregando dados...]
+[2026-05-14 10:10:00,671: INFO: explain: ============================================================]
+[2026-05-14 10:10:00,671: INFO: explain: GERANDO EXPLICABILIDADE COM SHAP]
+[2026-05-14 10:10:00,671: INFO: explain: ============================================================]
+[2026-05-14 10:10:00,672: INFO: explain: Usando 1000 amostras para SHAP (de 56962 total)]
+[2026-05-14 10:10:00,672: INFO: explain: 
+📊 Random Forest...]
+[2026-05-14 10:10:00,672: INFO: explain: Gerando SHAP values para random_forest...]
+[2026-05-14 10:11:26,117: INFO: explain: SHAP values gerados: shape=(1000, 30)]
+[2026-05-14 10:11:26,118: INFO: explain: Criando summary plot para random_forest...]
+[2026-05-14 10:11:26,528: INFO: explain: Summary plot salvo: /home/leandro/programacao/fraud_council/outputs/explanations/shap_summary_random_forest.png]
+[2026-05-14 10:11:26,528: INFO: explain: Criando beeswarm plot para random_forest...]
+[2026-05-14 10:11:27,073: INFO: explain: Beeswarm plot salvo: /home/leandro/programacao/fraud_council/outputs/explanations/shap_beeswarm_random_forest.png]
+[2026-05-14 10:11:27,140: INFO: explain: Criando gráfico de impacto para rf (transação 486)...]
+[2026-05-14 10:11:27,400: INFO: explain: Gráfico de impacto salvo: /home/leandro/programacao/fraud_council/outputs/explanations/shap_impact_rf_idx486.png]
+[2026-05-14 10:11:27,400: INFO: explain: Criando gráfico de impacto para rf (transação 983)...]
+[2026-05-14 10:11:27,633: INFO: explain: Gráfico de impacto salvo: /home/leandro/programacao/fraud_council/outputs/explanations/shap_impact_rf_idx983.png]
+[2026-05-14 10:11:27,633: INFO: explain: Criando gráfico de impacto para rf (transação 525)...]
+[2026-05-14 10:11:27,857: INFO: explain: Gráfico de impacto salvo: /home/leandro/programacao/fraud_council/outputs/explanations/shap_impact_rf_idx525.png]
+[2026-05-14 10:11:27,857: INFO: explain: 
+📊 XGBoost...]
+[2026-05-14 10:11:27,857: INFO: explain: Gerando SHAP values para xgboost...]
+[2026-05-14 10:12:01,876: INFO: explain: Carregando dados...]
+[2026-05-14 10:12:02,659: INFO: explain: ============================================================]
+[2026-05-14 10:12:02,659: INFO: explain: GERANDO EXPLICABILIDADE COM SHAP]
+[2026-05-14 10:12:02,659: INFO: explain: ============================================================]
+[2026-05-14 10:12:02,660: INFO: explain: Usando 1000 amostras para SHAP (de 56962 total)]
+[2026-05-14 10:12:02,660: INFO: explain: 
+📊 Random Forest...]
+[2026-05-14 10:12:02,660: INFO: explain: Gerando SHAP values para random_forest...]
+[2026-05-14 10:13:27,909: INFO: explain: SHAP values gerados: shape=(1000, 30)]
+[2026-05-14 10:13:27,909: INFO: explain: Criando summary plot para random_forest...]
+[2026-05-14 10:13:28,297: INFO: explain: Summary plot salvo: /home/leandro/programacao/fraud_council/outputs/explanations/shap_summary_random_forest.png]
+[2026-05-14 10:13:28,297: INFO: explain: Criando beeswarm plot para random_forest...]
+[2026-05-14 10:13:28,863: INFO: explain: Beeswarm plot salvo: /home/leandro/programacao/fraud_council/outputs/explanations/shap_beeswarm_random_forest.png]
+[2026-05-14 10:13:28,919: INFO: explain: Criando gráfico de impacto para rf (transação 486)...]
+[2026-05-14 10:13:29,154: INFO: explain: Gráfico de impacto salvo: /home/leandro/programacao/fraud_council/outputs/explanations/shap_impact_rf_idx486.png]
+[2026-05-14 10:13:29,154: INFO: explain: Criando gráfico de impacto para rf (transação 983)...]
+[2026-05-14 10:13:29,379: INFO: explain: Gráfico de impacto salvo: /home/leandro/programacao/fraud_council/outputs/explanations/shap_impact_rf_idx983.png]
+[2026-05-14 10:13:29,379: INFO: explain: Criando gráfico de impacto para rf (transação 525)...]
+[2026-05-14 10:13:29,593: INFO: explain: Gráfico de impacto salvo: /home/leandro/programacao/fraud_council/outputs/explanations/shap_impact_rf_idx525.png]
+[2026-05-14 10:13:29,593: INFO: explain: 
+📊 XGBoost...]
+[2026-05-14 10:13:29,593: INFO: explain: Gerando SHAP values para xgboost...]
+[2026-05-14 10:13:29,628: WARNING: explain: TreeExplainer falhou para XGBoost (could not convert string to float: '[5E-1]'), usando Explainer genérico...]
+[2026-05-14 10:13:57,504: INFO: explain: Carregando dados...]
+[2026-05-14 10:13:58,292: INFO: explain: ============================================================]
+[2026-05-14 10:13:58,292: INFO: explain: GERANDO EXPLICABILIDADE COM SHAP]
+[2026-05-14 10:13:58,292: INFO: explain: ============================================================]
+[2026-05-14 10:13:58,293: INFO: explain: Usando 1000 amostras para SHAP (de 56962 total)]
+[2026-05-14 10:13:58,293: INFO: explain: 
+📊 Random Forest...]
+[2026-05-14 10:13:58,293: INFO: explain: Gerando SHAP values para random_forest...]
+[2026-05-14 10:15:23,515: INFO: explain: SHAP values gerados: shape=(1000, 30)]
+[2026-05-14 10:15:23,515: INFO: explain: Criando summary plot para random_forest...]
+[2026-05-14 10:15:23,923: INFO: explain: Summary plot salvo: /home/leandro/programacao/fraud_council/outputs/explanations/shap_summary_random_forest.png]
+[2026-05-14 10:15:23,923: INFO: explain: Criando beeswarm plot para random_forest...]
+[2026-05-14 10:15:24,467: INFO: explain: Beeswarm plot salvo: /home/leandro/programacao/fraud_council/outputs/explanations/shap_beeswarm_random_forest.png]
+[2026-05-14 10:15:24,522: INFO: explain: Criando gráfico de impacto para rf (transação 486)...]
+[2026-05-14 10:15:24,739: INFO: explain: Gráfico de impacto salvo: /home/leandro/programacao/fraud_council/outputs/explanations/shap_impact_rf_idx486.png]
+[2026-05-14 10:15:24,739: INFO: explain: Criando gráfico de impacto para rf (transação 983)...]
+[2026-05-14 10:15:24,966: INFO: explain: Gráfico de impacto salvo: /home/leandro/programacao/fraud_council/outputs/explanations/shap_impact_rf_idx983.png]
+[2026-05-14 10:15:24,966: INFO: explain: Criando gráfico de impacto para rf (transação 525)...]
+[2026-05-14 10:15:25,196: INFO: explain: Gráfico de impacto salvo: /home/leandro/programacao/fraud_council/outputs/explanations/shap_impact_rf_idx525.png]
+[2026-05-14 10:15:25,196: INFO: explain: 
+📊 XGBoost...]
+[2026-05-14 10:15:25,196: INFO: explain: Gerando SHAP values para xgboost...]
+[2026-05-14 10:15:25,220: WARNING: explain: TreeExplainer falhou para XGBoost (could not convert string to float: '[5E-1]'), usando Explainer genérico...]
+[2026-05-14 10:15:25,233: WARNING: explain: ⚠️  Falha ao gerar explicações para XGBoost: The passed model is not callable and cannot be analyzed directly with the given masker! Model: XGBClassifier(base_score=None, booster=None, callbacks=None,
+              colsample_bylevel=None, colsample_bynode=None,
+              colsample_bytree=0.8, device=None, early_stopping_rounds=None,
+              enable_categorical=False, eval_metric='aucpr', feature_types=None,
+              feature_weights=None, gamma=None, grow_policy=None,
+              importance_type=None, interaction_constraints=None,
+              learning_rate=0.05, max_bin=None, max_cat_threshold=None,
+              max_cat_to_onehot=None, max_delta_step=None, max_depth=5,
+              max_leaves=None, min_child_weight=None, missing=nan,
+              monotone_constraints=None, multi_strategy=None, n_estimators=200,
+              n_jobs=-1, num_parallel_tree=None, ...)
+    Continuando com Autoencoder...]
+[2026-05-14 10:15:25,234: INFO: explain: 
+📊 Autoencoder...]
+[2026-05-14 10:15:25,234: INFO: explain: Analisando erro de reconstrução do Autoencoder...]
+[2026-05-14 10:15:25,285: INFO: explain: 
+Top 10 features com maior erro:
+   feature  mean_error  std_error
+22     V22    0.537647   0.369606
+18     V18    0.509578   0.511558
+19     V19    0.472487   0.439043
+0     Time    0.390199   0.313788
+26     V26    0.372233   0.306025
+25     V25    0.354938   0.318974
+16     V16    0.354099   0.490578
+24     V24    0.337886   0.280224
+15     V15    0.312701   0.290758
+11     V11    0.266046   0.283712]
+[2026-05-14 10:15:25,288: INFO: explain: Plotando erros de reconstrução do Autoencoder...]
+[2026-05-14 10:15:25,620: INFO: explain: Gráfico de erros salvo: /home/leandro/programacao/fraud_council/outputs/explanations/autoencoder_reconstruction_errors.png]
+[2026-05-14 10:15:25,620: INFO: explain: 
+============================================================]
+[2026-05-14 10:15:25,620: INFO: explain: ✅ Explicações salvas em: /home/leandro/programacao/fraud_council/outputs/explanations]
+[2026-05-14 10:15:25,620: INFO: explain: ============================================================]
