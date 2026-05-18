@@ -62,9 +62,12 @@ def generate_shap_values(
         except Exception as e:
             logger.warning(
                 f"TreeExplainer falhou para XGBoost ({e}), "
-                "usando Explainer genérico..."
+                "usando KernelExplainer com predict_proba..."
             )
-            explainer = shap.Explainer(model)
+            explainer = shap.KernelExplainer(
+                lambda x: model.predict_proba(x)[:, 1],
+                shap.sample(X_test, min(100, len(X_test)))
+            )
     else:
         raise ValueError(f"model_type deve ser 'random_forest' ou 'xgboost'")
 
@@ -109,14 +112,20 @@ def plot_shap_summary(
 
     logger.info(f"Criando summary plot para {model_type}...")
 
-    plt.figure(figsize=(10, 6))
-    shap.summary_plot(
-        shap_values, X_test, plot_type="bar", show=False, color=NORD_PALETTE[0]
-    )
+    # Calcular importância média absoluta das features
+    feature_importance = np.abs(shap_values).mean(axis=0)
+    indices = np.argsort(feature_importance)
+
+    fig, ax = plt.subplots(figsize=(10, 12))
+    y_pos = np.arange(len(indices))
+    ax.barh(y_pos, feature_importance[indices], color=NORD_PALETTE[0], alpha=0.8)
+    ax.set_yticks(y_pos)
+    ax.set_yticklabels(X_test.columns[indices], fontsize=9)
+    ax.set_xlabel("mean(|SHAP value|) (average impact on model output magnitude)")
+    ax.invert_yaxis()
+
     plt.tight_layout()
-    plt.savefig(
-        output_path / f"shap_summary_{model_type}.png", dpi=300, bbox_inches="tight"
-    )
+    plt.savefig(output_path / f"shap_summary_{model_type}.png", dpi=300)
     plt.close()
 
     logger.info(f"Summary plot salvo: {output_path / f'shap_summary_{model_type}.png'}")
@@ -141,11 +150,17 @@ def plot_shap_beeswarm(
 
     logger.info(f"Criando beeswarm plot para {model_type}...")
 
-    plt.figure(figsize=(10, 8))
-    shap.summary_plot(shap_values, X_test, plot_type="dot", show=False)
+    plt.figure(figsize=(12, 10))
+    explanation = shap.Explanation(
+        values=shap_values,
+        base_values=np.zeros(shap_values.shape[0]),
+        data=X_test.values,
+        feature_names=X_test.columns.tolist(),
+    )
+    shap.summary_plot(explanation, plot_type="dot", show=False)
     plt.tight_layout()
     plt.savefig(
-        output_path / f"shap_beeswarm_{model_type}.png", dpi=300, bbox_inches="tight"
+        output_path / f"shap_beeswarm_{model_type}.png", dpi=300
     )
     plt.close()
 
