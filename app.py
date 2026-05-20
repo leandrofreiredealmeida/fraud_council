@@ -65,9 +65,14 @@ def load_models() -> dict:
 
 @st.cache_data
 def load_test_data() -> tuple[pd.DataFrame, pd.Series]:
-    """Carrega e preprocessa dados de teste."""
-    data_path = Path("data") / "creditcard.csv"
-    _, X_test, _, y_test = load_and_preprocess(data_path)
+    """Carrega dados de teste pré-salvos ou reconstrói a partir do CSV original."""
+    x_path = Path("models") / "X_test.parquet"
+    y_path = Path("models") / "y_test.parquet"
+    if x_path.exists() and y_path.exists():
+        X_test = pd.read_parquet(x_path)
+        y_test = pd.read_parquet(y_path)["Class"]
+        return X_test, y_test
+    _, X_test, _, y_test = load_and_preprocess(Path("data") / "creditcard.csv")
     return X_test, y_test
 
 

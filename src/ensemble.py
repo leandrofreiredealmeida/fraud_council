@@ -171,6 +171,10 @@ def main() -> None:
     print("Treinando meta-modelo...")
     train_ensemble(meta_features, y_test, models_path)
 
+    X_test.to_parquet(models_path / "X_test.parquet", index=False)
+    y_test.to_frame("Class").to_parquet(models_path / "y_test.parquet", index=False)
+    print("Dados de teste salvos em models/X_test.parquet e models/y_test.parquet")
+
     print("\n✅ Pipeline concluído com sucesso!")
 
 
