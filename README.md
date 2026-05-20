@@ -132,7 +132,7 @@ Interface interativa para explorar o ensemble em tempo real, organizada em três
 - Tabela comparativa de performance entre RF, XGBoost e Ensemble
 
 **The Council em Ação**
-- Seleção de qualquer transação do conjunto de teste por índice
+- Seleção de qualquer transação do conjunto de teste por índice ou inserção manual de features via formulário
 - Exibe o label real e os scores individuais de cada especialista (RF, XGBoost, Autoencoder) com barras de progresso
 - Veredito final do meta-modelo com score de confiança
 
