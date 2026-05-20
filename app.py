@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import datetime
 import warnings
 from pathlib import Path
 
@@ -141,47 +142,21 @@ def tab1_visao_geral():
     st.dataframe(metrics_df, width="stretch")
 
 
-def tab2_council_em_acao():
-    """Aba 2: The Council em Ação"""
-    st.header("⚖️ The Council em Ação")
-
-    models = load_models()
-    X_test, y_test = load_test_data()
-
-    # Seleção de transação
-    max_idx = len(X_test) - 1
-    selected_idx = st.number_input(
-        f"Selecione a transação (0 a {max_idx}):",
-        min_value=0,
-        max_value=max_idx,
-        step=1,
-        key="selected_idx",
-    )
-
-    # Label real da transação
-    true_label = y_test.iloc[selected_idx]
-    true_label_str = "🟢 Legítima" if true_label == 0 else "🔴 Fraude"
-    st.write(f"**Label real:** {true_label_str}")
-
-    # Gerar meta-features para a transação selecionada
-    X_sample = X_test.iloc[[selected_idx]]
+def _render_council_verdict(X_sample: pd.DataFrame, models: dict) -> None:
+    """Exibe os votos dos especialistas e o veredito final do meta-modelo."""
     meta_features_sample = generate_meta_features(X_sample, "models")
 
-    # Scores dos especialistas
     rf_score = float(models["rf"].predict_proba(X_sample)[0, 1])
     xgb_score = float(models["xgb"].predict_proba(X_sample)[0, 1])
 
-    # Autoencoder score
     with warnings.catch_warnings():
         warnings.simplefilter("ignore")
         ae_recon = models["ae"].predict(X_sample)
     ae_mse = np.mean((X_sample.values - ae_recon) ** 2)
     ae_score = float(1 / (1 + np.exp(-10 * (ae_mse - models["ae_threshold"]))))
 
-    # Veredito do meta-modelo
     ensemble_score = float(models["meta"].predict_proba(meta_features_sample)[0, 1])
 
-    # Exibir scores como cards
     st.subheader("Votos dos Especialistas")
     col1, col2, col3 = st.columns(3)
 
@@ -197,7 +172,6 @@ def tab2_council_em_acao():
         st.metric("🔧 Autoencoder", f"{ae_score:.3f}")
         st.progress(min(ae_score, 1.0))
 
-    # Veredito final
     st.subheader("Veredito Final")
     col1, col2 = st.columns([2, 1])
     with col1:
@@ -211,9 +185,116 @@ def tab2_council_em_acao():
             st.markdown("## 🟢 LEGÍTIMA")
 
 
+def _render_manual_input() -> pd.DataFrame:
+    """Formulário de entrada manual de transação.
+
+    Retorna DataFrame de uma linha com as 30 features na ordem correta,
+    já com Time e Amount em escala bruta (o scaler é aplicado depois).
+    """
+    st.info(
+        "V1–V28 são componentes anônimos de PCA extraídos dos dados originais. "
+        "O valor **0.0** representa o comportamento médio de uma transação legítima."
+    )
+
+    col_time, col_amount = st.columns(2)
+    with col_time:
+        picked_time = st.time_input(
+            "Horário da transação",
+            value=datetime.time(12, 0),
+        )
+        time_val = picked_time.hour * 3600 + picked_time.minute * 60
+        st.caption(f"Equivalente a {time_val:,} segundos no dataset")
+    with col_amount:
+        amount_val = st.number_input(
+            "Valor da transação",
+            min_value=0.0,
+            max_value=25691.16,
+            value=100.0,
+            step=0.01,
+            format="%.2f",
+        )
+
+    v_values: dict[str, float] = {}
+    with st.expander("Ajustar componentes V1–V28", expanded=False):
+        cols = st.columns(4)
+        for i in range(1, 29):
+            with cols[(i - 1) % 4]:
+                v_values[f"V{i}"] = st.slider(
+                    f"V{i}",
+                    min_value=-5.0,
+                    max_value=5.0,
+                    value=0.0,
+                    step=0.01,
+                    key=f"manual_v{i}",
+                )
+
+    row = {"Time": float(time_val), "Amount": float(amount_val)}
+    row.update(v_values)
+
+    feature_order = ["Time"] + [f"V{i}" for i in range(1, 29)] + ["Amount"]
+    return pd.DataFrame([row])[feature_order]
+
+
+def _preprocess_manual_transaction(
+    raw_df: pd.DataFrame, scaler: object
+) -> pd.DataFrame:
+    """Aplica o scaler em Time e Amount mantendo as features V inalteradas."""
+    df = raw_df.copy()
+    df[["Time", "Amount"]] = scaler.transform(df[["Time", "Amount"]])
+    return df
+
+
+def tab2_council_em_acao():
+    """Aba 2: The Council em Ação"""
+    st.header("⚖️ The Council em Ação")
+
+    models = load_models()
+    X_test, y_test = load_test_data()
+
+    mode = st.radio(
+        "Modo de análise:",
+        ["Transação do dataset", "Transação manual"],
+        horizontal=True,
+    )
+    st.session_state["analysis_mode"] = (
+        "dataset" if mode == "Transação do dataset" else "manual"
+    )
+
+    st.divider()
+
+    if mode == "Transação do dataset":
+        max_idx = len(X_test) - 1
+        selected_idx = st.number_input(
+            f"Selecione a transação (0 a {max_idx}):",
+            min_value=0,
+            max_value=max_idx,
+            step=1,
+            key="selected_idx",
+        )
+
+        true_label = y_test.iloc[selected_idx]
+        true_label_str = "🟢 Legítima" if true_label == 0 else "🔴 Fraude"
+        st.write(f"**Label real:** {true_label_str}")
+
+        X_sample = X_test.iloc[[selected_idx]]
+        _render_council_verdict(X_sample, models)
+
+    else:
+        raw_df = _render_manual_input()
+        if st.button("Analisar transação", type="primary"):
+            X_sample = _preprocess_manual_transaction(raw_df, models["scaler"])
+            _render_council_verdict(X_sample, models)
+
+
 def tab3_explicabilidade():
     """Aba 3: Explicabilidade"""
     st.header("🔍 Explicabilidade")
+
+    if st.session_state.get("analysis_mode") == "manual":
+        st.info(
+            "A análise SHAP por transação está disponível apenas para transações do dataset. "
+            "Volte à aba **The Council em Ação** e selecione o modo **Transação do dataset**."
+        )
 
     models = load_models()
     X_test, y_test = load_test_data()
