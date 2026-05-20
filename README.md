@@ -120,4 +120,32 @@ _, X_test, _, _ = load_and_preprocess("data/creditcard.csv")
 generate_all_explanations(X_test, "models", "outputs/explanations")
 ```
 
+# Dashboard Streamlit
+
+**Arquivo:** `app.py`
+
+Interface interativa para explorar o ensemble em tempo real, organizada em três abas:
+
+**Visão Geral**
+- Cards com as métricas principais do ensemble (AUC, F1, Precision, Recall)
+- Gráfico de desbalanceamento de classes no conjunto de teste
+- Tabela comparativa de performance entre RF, XGBoost e Ensemble
+
+**The Council em Ação**
+- Seleção de qualquer transação do conjunto de teste por índice
+- Exibe o label real e os scores individuais de cada especialista (RF, XGBoost, Autoencoder) com barras de progresso
+- Veredito final do meta-modelo com score de confiança
+
+**Explicabilidade**
+- SHAP Summary Plot pré-calculado para RF ou XGBoost
+- Waterfall plot interativo das top 10 features para a transação selecionada (gerado em tempo real para RF via `TreeExplainer`)
+- Tabela com as top 5 features e direção de impacto (aumenta/reduz suspeita)
+- Para XGBoost, exibe gráficos pré-calculados de transações de alto risco
+
+## Como executar
+
+```bash
+streamlit run app.py
+```
+
 

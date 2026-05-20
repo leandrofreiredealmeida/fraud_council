@@ -26,6 +26,7 @@ def load_and_preprocess(data_path: Path | str) -> tuple:
     """Carrega e faz pré-processamento dos dados.
 
     Retorna X_train, X_test, y_train, y_test (after normalization).
+    Salva o scaler em models/scaler.joblib para uso em inferência.
     """
     data_path = Path(data_path)
     df = pd.read_csv(data_path)
@@ -46,6 +47,11 @@ def load_and_preprocess(data_path: Path | str) -> tuple:
     X_test = X_test.copy()
     X_train[cols_to_scale] = scaler.fit_transform(X_train[cols_to_scale])
     X_test[cols_to_scale] = scaler.transform(X_test[cols_to_scale])
+
+    # Salvar scaler para inferência
+    models_path = data_path.parent.parent / "models"
+    models_path.mkdir(parents=True, exist_ok=True)
+    joblib.dump(scaler, models_path / "scaler.joblib")
 
     return X_train, X_test, y_train, y_test
 
